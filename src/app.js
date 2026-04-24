@@ -1,8 +1,9 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
-const cors = require("cors")
+const cors = require("cors");
 const { sequelize } = require("./config/dbConfig");
-const authRoutes = require("./routes/authRoutes")
+const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
 // require("./models/userModel")
 const app = express();
 app.use(express.json());
@@ -14,7 +15,8 @@ app.use(
     }),
 );
 // sync the code to database
-sequelize.sync()
+sequelize.sync();
 // routes
-app.use("/api/auth", authRoutes)
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes)
 module.exports = app;
